@@ -1,14 +1,15 @@
 package com.example.catalog;
 
+import com.example.catalog.utils.SpotifyUtils;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static com.example.catalog.utils.SpotifyUtils.isValidId;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.example.catalog.utils.SpotifyUtils.isValidURI;
+import static org.junit.jupiter.api.Assertions.*;
 
 
-@Disabled("Should be enabled for Junit exercises")
+//@Disabled("Should be enabled for Junit exercises")
 public class SpotifyUtilsTest {
 
     @Test
@@ -23,9 +24,57 @@ public class SpotifyUtilsTest {
         assertFalse(isValidId(null)); // null ID
         assertFalse(isValidId("")); // empty ID
         assertFalse(isValidId("shortID")); // too short ID (less than 15 characters)
-        assertFalse(isValidId("thisIDiswaytoolongtobevalid")); // too long ID (more than 30 characters)
+        assertFalse(isValidId("thisIDiswaytoolongtobevaliddcxvvcxvxvxvxvvvvvvcvcx")); // too long ID (more than 30 characters)
         assertFalse(isValidId("!@#$$%^&*()_+")); // invalid characters
         assertFalse(isValidId("1234567890abcdefGHIJKLMNO!@#")); // includes invalid characters
     }
 
+    @Test
+    public void testValidURI() {
+        assertTrue(isValidURI("spotify:track:6rqhFgbbKwnb9MLmUQDhG6")); //
+        assertTrue(isValidURI("spotify:artist:sdgsdf545MLmUQDhG6")); //
+        assertTrue(isValidURI("spotify:album:6rqhFgbfsd2f15sd1f5DhG6")); //
+        assertTrue(isValidURI("spotify:playlist:sds5f15fsfsQDhG6"));
+
+    }
+
+
+    @Test
+    public void testInvalidURI() {
+        assertFalse(isValidURI(null)); // null ID
+        assertFalse(isValidURI("")); // empty ID
+        assertFalse(isValidURI("shortID")); //
+        assertFalse(isValidURI("bibo:playlist:sds5f15fsfsQDhG6")); //
+        assertFalse(isValidURI("spotify:pablo:sds5f15fsfsQDhG6")); //
+        assertFalse(isValidURI("spotify:playlist:sds5f15fsfs#QDhG6")); //
+        assertFalse(isValidURI("spotify:track:6rhG6")); //
+        assertFalse(isValidURI("spotify:artist:sdgsdf54sgsdgsdgsdgsdgdfgdsfhfhfgshhshshshshshshshshshshdfhdfhrsthrth5MLmUQDhG6")); //
+
+    }
+
+    @Test
+    public void testInvalidSpotifyClient() {
+
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            SpotifyUtils.getSpotifyClient(null, "null");
+        }, "Should throw exception when client ID is null");
+        assertThrows(IllegalArgumentException.class, () -> {
+            SpotifyUtils.getSpotifyClient("null", null);
+        }, "Should throw exception when client ID is null");
+        assertThrows(IllegalArgumentException.class, () -> {
+            SpotifyUtils.getSpotifyClient(null, null);
+        }, "Should throw exception when client ID is null");
+        assertThrows(IllegalArgumentException.class, () -> {
+            SpotifyUtils.getSpotifyClient("", "null");
+        }, "Should throw exception when client ID is null");
+        assertThrows(IllegalArgumentException.class, () -> {
+            SpotifyUtils.getSpotifyClient("null", "");
+        }, "Should throw exception when client ID is null");
+        assertThrows(IllegalArgumentException.class, () -> {
+            SpotifyUtils.getSpotifyClient("", "");
+        }, "Should throw exception when client ID is null");
+
+
+    }
 }

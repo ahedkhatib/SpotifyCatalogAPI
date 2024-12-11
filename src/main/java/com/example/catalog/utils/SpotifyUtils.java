@@ -1,6 +1,8 @@
 package com.example.catalog.utils;
 
 import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
 
 public class SpotifyUtils {
 
@@ -21,6 +23,7 @@ public class SpotifyUtils {
         if (uri == null || uri.isEmpty()) {
             return false;
         }
+
         return SPOTIFY_URI_PATTERN.matcher(uri).matches();
     }
 
@@ -31,7 +34,14 @@ public class SpotifyUtils {
      * @return true if the string is a valid Spotify ID, false otherwise.
      */
     public static boolean isValidId(String id) {
-        return true;
+        if(id == null || id.length() < 15||id.length() >30){
+            return false;
+        }
+        Pattern pattern = Pattern.compile("[~#@*+%{}<>\\[\\]|\"\\_^]");
+        Matcher matcher = pattern.matcher(id);
+        return !matcher.find();
+
+        //return true;
     }
 
     /**
