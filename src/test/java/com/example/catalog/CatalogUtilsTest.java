@@ -177,7 +177,7 @@ class CatalogUtilsTest {
                         },
                         {
                             "duration_ms": 200000,
-                            "name": "duplicate name",
+                            "name": "Duplicate name",
                             "popularity": 70,
                             "album": {
                                 "name": "First Album",
@@ -192,7 +192,7 @@ class CatalogUtilsTest {
                         },
                         {
                             "duration_ms": 220000,
-                            "name": "duplicate name",
+                            "name": "Duplicate name",
                             "popularity": 75,
                             "album": {
                                 "name": "Second Album",
@@ -256,21 +256,44 @@ class CatalogUtilsTest {
         objectMapper.readTree(jsonData).forEach(songs::add);
     }
 
+
+    @Test
     void testSortSongsByName() {
         List<JsonNode> sortedSongs = catalogUtils.sortSongsByName(songs);
-        for (int i = 0; i < sortedSongs.size() - 1; i++) {
-            assertTrue((sortedSongs.get(i).get("name").asText()).compareTo((sortedSongs.get(i + 1).get("name").asText())) <= 0,
-                    "Songs are not sorted by name");
-        }
-    }
-    void testSortSongsByPopularity() {
-        List<JsonNode> sortedSongs = catalogUtils.filterSongsByPopularity(songs, 0);
-        for (int i = 0; i < sortedSongs.size() - 1; i++) {
-            assertTrue(sortedSongs.get(i).get("popularity").asInt() > sortedSongs.get(i + 1).get("popularity").asInt(),
-                    "Songs are not sorted by popularity");
-        }
+        //The first name
+        assertEquals("Bad Guy", sortedSongs.get(0).get("name").asText());
+
+        //Duplicate names
+        assertEquals("Duplicate name", sortedSongs.get(4).get("name").asText());
+        assertEquals("Duplicate name", sortedSongs.get(5).get("name").asText());
+
+        //The last name
+        assertEquals("Zero Popularity Song", sortedSongs.get(14).get("name").asText());
+
+        //List not null
+        assertNotNull(sortedSongs);
     }
 
+    @Test
+    void testFilterSongsByPopularity() {
+        List<JsonNode> filteredSongs = catalogUtils.filterSongsByPopularity(songs, 89);
+        assertEquals(2, filteredSongs.size());
+        assertEquals("Shape of You", filteredSongs.get(0).get("name").asText());
+        assertEquals("Old Town Road", filteredSongs.get(1).get("name").asText());
+
+        //Filter by min popularity
+        List<JsonNode> filteredSongs_2 = catalogUtils.filterSongsByPopularity(songs, 0);
+        assertEquals(15, filteredSongs_2.size());
+        assertEquals("Blinding Lights", filteredSongs_2.get(0).get("name").asText());
+
+        //Filter by max popularity
+        List<JsonNode> filteredSongs_3 = catalogUtils.filterSongsByPopularity(songs, 92);
+        assertEquals(1, filteredSongs_3.size());
+        assertEquals("Shape of You", filteredSongs_3.get(0).get("name").asText());
+
+    }
+
+    @Test
     void testDoesSongExistByName(){
         assertTrue(catalogUtils.doesSongExistByName(songs, "Blinding Lights"));
         assertTrue(catalogUtils.doesSongExistByName(songs, "ShaPe Of YoU"));
@@ -279,24 +302,29 @@ class CatalogUtilsTest {
 
     }
 
+    @Test
     void testcountSongsByArtist(){
         assertEquals(2, catalogUtils.countSongsByArtist(songs, "Artist A"));
         assertEquals(0, catalogUtils.countSongsByArtist(songs, "Ahed"));
         assertEquals(1, catalogUtils.countSongsByArtist(songs, "Unknown Artist"));
+        assertEquals(1, catalogUtils.countSongsByArtist(songs, "UNkNown ArtIst"));
     }
 
+    @Test
     void testgetLongestSong(){
         JsonNode longestSong = catalogUtils.getLongestSong(songs);
-        assertEquals("VERY Long Song", longestSong.get("duration_ms").asText());
+        assertEquals("300000", longestSong.get("duration_ms").asText());
         assertNotNull(longestSong);
     }
 
+    @Test
     void testgetSongByYear(){
         assertEquals("Zero Popularity Song", catalogUtils.getSongByYear(songs, 2005).get(0).get("name").asText());
-        assertNull(catalogUtils.getSongByYear(songs, 2024));
-        assertEquals("Case Sensitivity Test", catalogUtils.getSongByYear(songs, 2018).get(0).get("name").asText());
+        assertEquals(0, catalogUtils.getSongByYear(songs, 2024).size());
+        assertEquals("Shallow", catalogUtils.getSongByYear(songs, 2018).get(0).get("name").asText());
     }
 
+    @Test
     void testgetMostRecentSong(){
         JsonNode mostRecentSong = catalogUtils.getMostRecentSong(songs);
         assertEquals("VERY Long Song", mostRecentSong.get("name").asText());
