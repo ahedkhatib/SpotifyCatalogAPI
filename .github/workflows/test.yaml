@@ -24,7 +24,7 @@ jobs:
           mvn test -q
 
   TestStyle:
-    name: Execute Unittests
+    name: Execute Checktests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
