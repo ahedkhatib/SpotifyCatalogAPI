@@ -28,12 +28,12 @@ jobs:
     needs: Build
     env:
       SPOTIFY_TESTING_REPO_NAME: ahedkhatib/SpotifyTesting
-      UI_TESTING_WORKFLOW_ID: 12804355545
+      UI_TESTING_WORKFLOW_ID: ui_testing.yaml
     steps:
       - name: Trigger the Selenium testing workflow
         run: |
           curl -X POST \
            -H "Authorization: Bearer ${{ secrets.ACCESS_TOKEN }}" \
            -H "Accept: application/vnd.github.v3+json" \
-           -d "{\"ref\": \"main\", \"inputs\": {\"browser\": \"chrome\"}}" \
+           -d "{\"ref\": \"main\", \"inputs\": {\"grid_url\": \"http://localhost:4444\", \"chrome_131_0\": true}}" \
            https://api.github.com/repos/$SPOTIFY_TESTING_REPO_NAME/actions/workflows/$UI_TESTING_WORKFLOW_ID/dispatches
