@@ -14,6 +14,7 @@ public class HelloController {
 
     @GetMapping("/internal")
     public String internal() {
+
         return "Internal";
     }
 
