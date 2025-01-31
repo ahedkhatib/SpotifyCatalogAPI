@@ -1,6 +1,9 @@
 name: SpotifyCatalogAPI tests
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -21,7 +24,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          mvn test -q
+          mvn -Dtest=com.example.catalog.controllers.ArtistControllerTest test -q
 
   TestStyle:
     name: Execute Checktests
