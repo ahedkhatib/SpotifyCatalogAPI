@@ -28,6 +28,7 @@ import com.example.catalog.model.Artist;
 @RestController
 public class CatalogController {
 
+
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final CatalogUtils catalogUtils = new CatalogUtils();
 
