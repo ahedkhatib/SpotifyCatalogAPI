@@ -58,11 +58,11 @@ public class ArtistControllerTest {
                 .andExpect(MockMvcResultMatchers.content().string("{\"id\":\"1Xyo4u8uXC1ZmMpatF05PJ\",\"name\":\"The Weeknd\",\"followers\":95105223,\"genres\":[\"canadian contemporary r&b\",\"canadian pop\",\"pop\"],\"images\":[{\"url\":\"ab6761610000e5eb9e528993a2820267b97f6aae.jpeg\",\"height\":640,\"width\":640},{\"url\":\"ab676161000051749e528993a2820267b97f6aae.jpeg\",\"height\":320,\"width\":320},{\"url\":\"ab6761610000f1789e528993a2820267b97f6aae.jpeg\",\"height\":160,\"width\":160}],\"popularity\":96,\"uri\":\"spotify:artist:1Xyo4u8uXC1ZmMpatF05PJ\"}"));
     }
 
-    @AfterEach
+    /*@AfterEach
     void tearDown() {
         File file = new File(TEST_JSON_FILE);
         if (file.exists()) {
             file.delete();
         }
-    }
+    }*/
 }
