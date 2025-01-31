@@ -3,6 +3,7 @@ package com.example.catalog.services;
 import com.example.catalog.model.Artist;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,12 @@ public class JSONDataSourceService implements DataSourceService {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
+    @Value("${json.file.path:data/popular_artists.json}")
+    private String jsonFilePath;
+
     @Override
     public Artist getArtistById(String id) throws IOException {
-        JsonNode artists = loadJsonData("data/popular_artists.json");
+        JsonNode artists = loadJsonData(jsonFilePath);
         JsonNode artistNode = artists.get(id);
         if (artistNode == null) {
             return null;

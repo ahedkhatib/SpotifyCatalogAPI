@@ -5,25 +5,18 @@ import java.util.List;
 
 public class Artist {
 
-    @JsonProperty("id")
     private String id;
 
-    @JsonProperty("name")
     private String name;
 
-    @JsonProperty("followers")
     private int followers;
 
-    @JsonProperty("genres")
     private List<String> genres;
 
-    @JsonProperty("images")
     private List<Image> images;
 
-    @JsonProperty("popularity")
     private int popularity;
 
-    @JsonProperty("uri")
     private String uri;
 
     // Getters and Setters
