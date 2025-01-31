@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
@@ -31,7 +32,17 @@ public class ArtistControllerTest {
 
     @BeforeEach
     void setUp() throws IOException {
+        File testFile = new File(TEST_JSON_FILE);
+        if (!testFile.exists()) {
+            createEmptyTestJson();
+        }
         copyProductionDataToTest();
+    }
+
+    private void createEmptyTestJson() throws IOException {
+        try (FileWriter fileWriter = new FileWriter(TEST_JSON_FILE)) {
+            fileWriter.write("{}");
+        }
     }
 
     private void copyProductionDataToTest() throws IOException {
