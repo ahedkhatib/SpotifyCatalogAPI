@@ -24,7 +24,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          mvn -Dtest=com.example.catalog.controllers.ArtistControllerTest test -q
+          mvn -Dtest=com/example/catalog/ArtistControllerTest.java test -q
 
   TestStyle:
     name: Execute Checktests
