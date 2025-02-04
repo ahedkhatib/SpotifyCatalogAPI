@@ -79,8 +79,7 @@ The API uses \`application.properties\` to define the active data source.
 - Maven
 
 ### Build and Run
-\`\`\`sh
-# Clone the repository
+Clone the repository: 
 git clone https://github.com/ahedkhatib/SpotifyCatalogAPI.git
 cd SpotifyCatalogAPI
 
@@ -89,9 +88,8 @@ mvn clean install
 
 # Run the application
 mvn spring-boot:run
-\`\`\`
 
-The API will be available at \`http://localhost:8080\`.
+The API will be available at \`http://localhost:8080
 
 ---
 
@@ -99,15 +97,13 @@ The API will be available at \`http://localhost:8080\`.
 
 Unit tests are implemented for controllers and data sources.
 Run tests using:
-\`\`\`sh
+
 mvn test
-\`\`\`
 
 To test API responses, you can use **Postman** or **cURL**:
-\`\`\`sh
+
 # Get all artists
 curl -X GET \"http://localhost:8080/artists\" -H \"Accept: application/json\"
-\`\`\`
 
 ---
 
