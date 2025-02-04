@@ -62,7 +62,7 @@ Supported data sources:
 The API uses \`application.properties\` to define the active data source.
 
 \`\`\`properties
-# Available options: json, spotify_api, database
+Available options: json, spotify_api, database
 datasource.type=json
 \`\`\`
 
