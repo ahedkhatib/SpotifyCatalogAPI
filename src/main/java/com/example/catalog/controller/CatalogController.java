@@ -1,3 +1,4 @@
+/*
 package com.example.catalog.controller;
 
 import com.example.catalog.utils.CatalogUtils;
@@ -298,7 +299,8 @@ public class CatalogController {
         }
     }
 
-    /*@GetMapping("/artists/{id}")
+    */
+/*@GetMapping("/artists/{id}")
     public ResponseEntity<Artist> getArtistById(@PathVariable String id) throws IOException {
         if (! SpotifyUtils.isValidId(id)) {
             return ResponseEntity.badRequest().build();
@@ -313,6 +315,7 @@ public class CatalogController {
         }
 
         return  ResponseEntity.ok(objectMapper.treeToValue(artistNode, Artist.class));
-    }*/
+    }*//*
 
-}
+
+}*/

@@ -1,5 +1,8 @@
 package com.example.catalog.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Image {
 
     private String url;

@@ -24,4 +24,4 @@ jobs:
 
       - name: Run Tests
         run: |
-          mvn -Dtest=com/example/catalog/ArtistControllerTest.java test -q
+          mvn -Dtest=com/example/catalog/JSONDataSourceServiceTest,com/example/catalog/SpotifyAPIDataSourceServiceTest test -q

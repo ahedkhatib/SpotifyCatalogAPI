@@ -1,14 +1,20 @@
 package com.example.catalog.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Artist {
 
     private String id;
 
     private String name;
 
+    @JsonProperty("followers")
+    @JsonDeserialize(using = FollowersDeserializer.class) // 👈 כאן מוסיפים את ה-Deserializer
     private int followers;
 
     private List<String> genres;

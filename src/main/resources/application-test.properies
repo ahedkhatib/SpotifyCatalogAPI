@@ -1,2 +1,0 @@
-datasource.type=json
-json.file.path=src/test/resources/test_artist.json
