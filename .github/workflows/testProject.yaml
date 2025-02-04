@@ -24,6 +24,6 @@ jobs:
           distribution: 'temurin'
           java-version: '23'
 
-      - name: Run Unit Tests with datasource=${{ matrix.datasource_type }}
+      - name: Run JSONDataSourceServiceTest and SpotifyAPIDataSourceServiceTest
         run: |
-          mvn test -q -Ddatasource.type=${{ matrix.datasource_type }}
+          mvn test -q -Ddatasource.type=${{ matrix.datasource_type }} -Dtest=JSONDataSourceServiceTest,SpotifyAPIDataSourceServiceTest

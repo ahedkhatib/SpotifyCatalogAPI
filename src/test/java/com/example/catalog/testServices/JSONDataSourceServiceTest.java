@@ -1,4 +1,4 @@
-package com.example.catalog;
+package com.example.catalog.testServices;
 
 
 
@@ -7,7 +7,6 @@ import com.example.catalog.model.Artist;
 import com.example.catalog.model.Song;
 import com.example.catalog.model.Track;
 import com.example.catalog.services.JSONDataSourceService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
