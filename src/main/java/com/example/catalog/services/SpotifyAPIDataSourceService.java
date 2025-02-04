@@ -24,7 +24,7 @@ public class SpotifyAPIDataSourceService implements DataSourceService {
 
     /*@Value("${spotify.api.token}")
     private String accessToken;*/
-    private final String accessToken = "BQDXZxvGUziIIOtu7f9F6VqpbkroTXhZEKG5fZA_CvxMem9HFisd54eUXavu4sUXZsDwCyRRC1dVTM841M-tF5BLET102uv2bTkypnXoEEl2L9fjtIRTIdvcGJwvk6ufV8U0j2j6aH4";
+    private final String accessToken = "BQAFOOpi0SmthrTd-hN57Oc4m8F-dgcqnLSCT2xe1gcEXMUp_rOqavZqN8bV9PrRr3ZZPCwp7QPnnKn_dKudsA_HmjQeN_Lfc0INeCeCOYuMhEheRHeDbSrG3tFbm-ZU5GOiB7Cq2YU";
 
 
     private final RestTemplate restTemplate;
